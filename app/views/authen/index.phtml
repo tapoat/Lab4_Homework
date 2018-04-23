@@ -1,0 +1,81 @@
+<?php echo $this->assets->outputCss('styleslogin'); ?>     
+  
+  <?php echo $this->flashSession->output(); 
+ 
+  $username='';
+  $password='';
+  $rememberMe=''; 
+
+  if($this->cookies->has("username") && $this->cookies->has("password") )
+  {
+      $username=$this->cookies->get("username");
+      $password=$this->cookies->get("password");
+      $rememberMe='checked';
+  }
+?>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">Start Bootstrap</a>
+        <button class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          Menu
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item mx-0 mx-lg-1">
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="event">Event</a>
+            </li>
+            <li class="nav-item mx-0 mx-lg-1">
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="about">About</a>
+            </li>
+            <li class="nav-item mx-0 mx-lg-1">
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="contact">Contact</a>
+            </li>
+          </ul>
+           <ul class="navbar-nav  navbar-right">     
+   	<?php if($this->session->has('memberAuthen')) {?> 
+      <li class="nav-item mx-0 mx-lg-1">
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about"><?php echo $this->session->get('memberEmail');?></a>
+     </li>
+     <li class="nav-item mx-0 mx-lg-1">
+     		<a  class="btn btn-danger navbar-btn" href="authen/signOut"> Logout </a> 
+     </li>  
+    <?php } else {?>
+      <li class="nav-item mx-0 mx-lg-1">
+       <a href="authen" class="btn btn-outline-primary"> Login </a>
+      </li>    
+     <li class="nav-item mx-0 mx-lg-1">
+       <a href="authen/signUp" class="btn btn-outline-info"> Sign Up </a>
+      </li>
+      <?php }?>
+    </ul>
+        </div>
+      </div>
+    </nav>
+
+  <form action="" method="post">
+  
+    <div class="form-group">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <label>Email address</label>
+      <input type="email" name="email" class="form-control" id="email" placeholder="Enter email" value="<?php if(isset($username))echo $username; ?>" required>
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" name="password" class="form-control" id="password" placeholder="Password" value="<?php if(isset($password))echo $password; ?>" required>
+     
+    </div>
+    <div class="form-check">
+      <input type="checkbox" name="rememberMe" class="form-check-input" id="rememberMe" value="1" <?php echo $rememberMe;?>>
+ 
+      <label class="form-check-label" for="rememberMe">Remember me</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+   
+    <a href="<?php echo $this->url->getBaseUri(); ?>" class="btn btn-warning">Back</a>
+   
+  </form>

@@ -1,0 +1,36 @@
+
+<a href="event/add" class="btn btn-light"> Add </a>
+
+<div class="container" style="padding-top: 50px;"> 
+    <table class="table table-striped text-center" style="background-color: white; color:black;">
+    <thead>
+        <tr>
+        <th scope="col">Event ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Date</th>
+        <th scope="col">Detail</th>
+        <!-- <th scope="col">Picture</th> -->
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($events as $event) {
+            echo '<tr><th>'.$event->id
+            .'</th><td>'.$event->name
+            .'</td><td>'.$event->date
+            .'</td><td>'.$event->detail;
+            // .'</td><td>';
+            // if ($event->picture) 
+            //     echo "<i class='fas fa-check-circle' style='color:green'></i>"; 
+            // else 
+            //     echo "<i class='fas fa-times' style='color:red'></i>";
+            echo '</td><td>'.
+            "<a href='event/edit/$event->id' class='btn btn-info'> Edit </a>"
+            .'</td><td>'
+            ."<a href='event/delete/$event->id' class='btn btn-danger'> Delete </a>"
+
+            // .'<form method="post"><input type="hidden" name="id" value='.$event->id.'><button type="submit" class="btn btn-danger"> Delete </button></form>'.
+            .'</td></tr>';
+        }?>
+    </tbody>
+    </table>
+</div>
